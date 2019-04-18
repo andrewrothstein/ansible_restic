@@ -1,0 +1,23 @@
+---
+# defaults file for restic
+restic_ver: '0.9.4'
+restic_mirror: https://github.com/restic/restic/releases/download
+restic_platform: linux_amd64
+restic_suffix: bz2
+
+restic_checksums:
+  '0.9.4':
+    darwin_386: sha256:43836fc05af4c552cb500cdc87a6ca06a6fb0f6b8f179171f1a971aee0a4d6f7
+    darwin_amd64: sha256:df278eebd151b6ff62ceae968e3a4203a58d447712ec3fdb62551b25299a61e1
+    freebsd_386: sha256:63f982006a02f5dd1b521e16cf203e42bf9a479deab3e89fa88b99e49cb03364
+    freebsd_amd64: sha256:f0474b15500edb41cb2eb6c7091bf96c0fe3ec455b8c0559974fcf1a3b1668e2
+    linux_386: sha256:1815747d94340ba15a0443856675aa23d778c743a9cb8478b0025a40ab5add68
+    linux_amd64: sha256:0440b6c1c17b58563c729fa133896199406f29356329ca5d048e4d9dcbf7d6fe
+    linux_arm64: sha256:f66e099b3dfc1bfa8fbbcbc04eaae20961e1b27fbb3994305d3dc7251a88da69
+    linux_arm: sha256:e82bcb39e340b7dccdfbf649ffcbef1f7ca0d90e0d217e29bb67a95dc1cdab24
+    openbsd_386: sha256:a47c13e667e16a8598e32ae5ed11e2d04dc8846af682ea3aebe42716e964a278
+    openbsd_amd64: sha256:887151c88c3be897947ce3159096518d452d30e1006b850a65d951387d2358d3
+    windows_386: sha256:a58c0cd4b456e360cfda39c325137343484606e93b500142a2a6730dd0b9dae1
+    windows_amd64: sha256:c53a614a1a1536db55204e938e84708de9f18c42b613a470e46d433fd83a6db0
+
+restic_install_dir: /usr/local/bin

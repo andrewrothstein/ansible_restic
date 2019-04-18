@@ -1,0 +1,51 @@
+---
+- name: resolve platform specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+- name: check for install...
+  become: root
+  stat:
+    path: '{{ restic_install_bin }}'
+  changed_when: False
+  register: restic_binary
+- when: not restic_binary.stat.exists
+  block:
+    - name: download bz2...
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{ restic_url }}'
+        dest: /tmp/{{ restic_bz2 }}
+    - name: decompress
+      become: yes
+      become_user: root
+      shell: 'bunzip2 -c /tmp/{{ restic_bz2 }} > {{ restic_install_bin }}'
+      args:
+        creates: '{{ restic_install_bin }}'
+    - name: make executable
+      become: yes
+      become_user: root
+      file:
+        path: '{{ restic_install_bin }}'
+        mode: 0755
+  always:
+    - name: cleanup
+      become: yes
+      become_user: root
+      file:
+        path: /tmp/{{ restic_bz2 }}
+        state: absent
+- name: link restic
+  become: yes
+  become_user: root
+  file:
+    src: '{{ restic_install_bin }}'
+    dest: '{{ restic_install_link }}'
+    state: link
