@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: restic
   author: Andrew Rothstein
   description: installs restic
   company: BlueMountain Capital
