@@ -1,28 +1,40 @@
 #!/usr/bin/env sh
-VER=0.9.4
+set -e
 DIR=~/Downloads
-MIRROR=https://github.com/restic/restic/releases/download/v${VER}
+MIRROR=https://github.com/restic/restic/releases/download
 
 dl()
 {
-    OS=$1
-    PLATFORM=$2
-    SUFFIX=$3
-    FILE=restic_${VER}_${OS}_${PLATFORM}.${SUFFIX}
-    wget -O $DIR/$FILE $MIRROR/$FILE
+    local ver=$1
+    local os=$2
+    local arch=$3
+    local suffix=${4:-bz2}
+    local platform="${os}_${arch}"
+    local file=restic_${ver}_${os}_${arch}.${suffix}
+    local url=$MIRROR/v$ver/$file
+    local lfile=$DIR/$file
+    if [ ! -e $lfile ]; then
+        wget -q -O $lfile $url
+    fi
+    printf "    # %s\n" $url
+    printf "    %s: sha256:%s\n" $platform $(sha256sum $lfile | awk '{print $1}')
 }
 
-dl darwin 386 bz2
-dl darwin amd64 bz2
-dl freebsd 386 bz2
-dl freebsd amd64 bz2
-dl linux 386 bz2
-dl linux amd64 bz2
-dl linux arm bz2
-dl linux arm64 bz2
-dl openbsd 386 bz2
-dl openbsd amd64 bz2
-dl windows 386 zip
-dl windows amd64 zip
-sha256sum $DIR/restic_${VER}_*
+dl_ver() {
+    local ver=$1
+    printf "  '%s':\n" $ver
+    dl $ver darwin 386
+    dl $ver darwin amd64
+    dl $ver freebsd 386
+    dl $ver freebsd amd64
+    dl $ver linux 386
+    dl $ver linux amd64
+    dl $ver linux arm
+    dl $ver linux arm64
+    dl $ver openbsd 386
+    dl $ver openbsd amd64
+    dl $ver windows 386 zip
+    dl $ver windows amd64 zip
+}
 
+dl_ver ${1:-0.9.6}

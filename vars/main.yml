@@ -1,7 +1,8 @@
 ---
 # vars file for restic
+restic_platform: '{{ restic_os }}_{{ restic_arch }}'
 restic_bin: restic_{{ restic_ver }}_{{ restic_platform }}
-restic_bz2: '{{ restic_bin }}.bz2'
+restic_bz2: '{{ restic_bin }}.{{ restic_suffix | default("bz2") }}'
 restic_url: '{{ restic_mirror }}/v{{ restic_ver }}/{{ restic_bz2 }}'
 restic_checksum: '{{ restic_checksums[restic_ver][restic_platform] }}'
 restic_install_bin: '{{ restic_install_dir }}/{{ restic_bin }}'
