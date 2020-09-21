@@ -23,18 +23,19 @@ dl()
 dl_ver() {
     local ver=$1
     printf "  '%s':\n" $ver
-    dl $ver darwin 386
     dl $ver darwin amd64
     dl $ver freebsd 386
     dl $ver freebsd amd64
+    dl $ver freebsd arm
     dl $ver linux 386
     dl $ver linux amd64
     dl $ver linux arm
     dl $ver linux arm64
+    dl $ver linux ppc64le
     dl $ver openbsd 386
     dl $ver openbsd amd64
     dl $ver windows 386 zip
     dl $ver windows amd64 zip
 }
 
-dl_ver ${1:-0.9.6}
+dl_ver ${1:-0.10.0}
