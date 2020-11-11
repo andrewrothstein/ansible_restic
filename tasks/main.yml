@@ -9,7 +9,7 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: check for install...
+- name: check for install at {{ restic_install_bin }}
   become: root
   stat:
     path: '{{ restic_install_bin }}'
@@ -17,32 +17,33 @@
   register: restic_binary
 - when: not restic_binary.stat.exists
   block:
-    - name: download bz2...
+    - name: downloading {{ restic_url }} to {{ restic_tmp_bz2 }}
       become: yes
       become_user: root
       get_url:
         url: '{{ restic_url }}'
-        dest: /tmp/{{ restic_bz2 }}
-    - name: decompress
+        dest: '{{ restic_tmp_bz2 }}'
+        checksum: '{{ restic_checksum }}'
+    - name: decompressing {{ restic_tmp_bz2 }} to {{ restic_install_bin }}
       become: yes
       become_user: root
       shell: 'bunzip2 -c /tmp/{{ restic_bz2 }} > {{ restic_install_bin }}'
       args:
         creates: '{{ restic_install_bin }}'
-    - name: make executable
+    - name: chmod 0755 {{ restic_install_bin }}
       become: yes
       become_user: root
       file:
         path: '{{ restic_install_bin }}'
         mode: 0755
   always:
-    - name: cleanup
+    - name: rm {{ restic_tmp_bz2 }}
       become: yes
       become_user: root
       file:
-        path: /tmp/{{ restic_bz2 }}
+        path: '{{ restic_tmp_bz2 }}'
         state: absent
-- name: link restic
+- name: linking {{ restic_install_link }} to {{ restic_install_bin }}
   become: yes
   become_user: root
   file:
