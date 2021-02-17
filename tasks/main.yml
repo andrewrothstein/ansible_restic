@@ -10,7 +10,8 @@
       paths:
         - '{{ role_path }}/vars'
 - name: check for install at {{ restic_install_bin }}
-  become: root
+  become: yes
+  become_user: root
   stat:
     path: '{{ restic_install_bin }}'
   changed_when: False
