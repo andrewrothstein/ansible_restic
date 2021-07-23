@@ -1,6 +1,6 @@
 andrewrothstein.restic
 =========
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-restic.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-restic)
+![Build Status](https://github.com/andrewrothstein/ansible_restic/actions/workflows/build.yml/badge.svg)
 
 Installs [Restic](https://restic.net/)
 
