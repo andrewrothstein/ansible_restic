@@ -10,7 +10,7 @@
       paths:
         - '{{ role_path }}/vars'
 - name: check for install at {{ restic_install_bin }}
-  become: yes
+  become: true
   become_user: root
   stat:
     path: '{{ restic_install_bin }}'
@@ -19,33 +19,33 @@
 - when: not restic_binary.stat.exists
   block:
     - name: downloading {{ restic_url }} to {{ restic_tmp_bz2 }}
-      become: yes
+      become: true
       become_user: root
       get_url:
         url: '{{ restic_url }}'
         dest: '{{ restic_tmp_bz2 }}'
         checksum: '{{ restic_checksum }}'
     - name: decompressing {{ restic_tmp_bz2 }} to {{ restic_install_bin }}
-      become: yes
+      become: true
       become_user: root
       shell: 'bunzip2 -c /tmp/{{ restic_bz2 }} > {{ restic_install_bin }}'
       args:
         creates: '{{ restic_install_bin }}'
     - name: chmod 0755 {{ restic_install_bin }}
-      become: yes
+      become: true
       become_user: root
       file:
         path: '{{ restic_install_bin }}'
         mode: 0755
   always:
     - name: rm {{ restic_tmp_bz2 }}
-      become: yes
+      become: true
       become_user: root
       file:
         path: '{{ restic_tmp_bz2 }}'
         state: absent
 - name: linking {{ restic_install_link }} to {{ restic_install_bin }}
-  become: yes
+  become: true
   become_user: root
   file:
     src: '{{ restic_install_bin }}'
