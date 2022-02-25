@@ -13,8 +13,9 @@ dl()
     local file=restic_${ver}_${os}_${arch}.${suffix}
     local url=$MIRROR/v$ver/$file
     local lfile=$DIR/$file
-    if [ ! -e $lfile ]; then
-        wget -q -O $lfile $url
+    if [ ! -e $lfile ];
+    then
+        curl -sSLf -o $lfile $url
     fi
     printf "    # %s\n" $url
     printf "    %s: sha256:%s\n" $platform $(sha256sum $lfile | awk '{print $1}')
