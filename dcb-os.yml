@@ -1,12 +1,14 @@
 ---
-- alpine_3.14
 - alpine_3.15
+- alpine_3.16
 - alpine_edge
 - archlinux_latest
-- fedora_35
 - fedora_36
+- fedora_37
 - debian_bullseye
 - debian_buster
 - rockylinux_8
+- rockylinux_9
 - ubuntu_bionic
 - ubuntu_focal
+- ubuntu_jammy

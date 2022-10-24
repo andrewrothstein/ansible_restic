@@ -1,5 +1,7 @@
 ---
 # vars file for restic
+restic_os: '{{ ansible_system | lower }}'
+restic_arch: '{{ restic_arch_map[ansible_architecture] }}'
 restic_platform: '{{ restic_os }}_{{ restic_arch }}'
 restic_bin: restic_{{ restic_ver }}_{{ restic_platform }}
 restic_bz2: '{{ restic_bin }}.{{ restic_suffix | default("bz2") }}'
