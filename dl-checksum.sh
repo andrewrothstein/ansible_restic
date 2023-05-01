@@ -24,7 +24,9 @@ dl()
 dl_ver() {
     local ver=$1
     printf "  '%s':\n" $ver
+    dl $ver aix ppc64
     dl $ver darwin amd64
+    dl $ver darwin arm64
     dl $ver freebsd 386
     dl $ver freebsd amd64
     dl $ver freebsd arm
@@ -32,11 +34,19 @@ dl_ver() {
     dl $ver linux amd64
     dl $ver linux arm
     dl $ver linux arm64
+    dl $ver linux mips
+    dl $ver linux mips64
+    dl $ver linux mips64le
+    dl $ver linux mipsle
     dl $ver linux ppc64le
+    dl $ver linux riscv64
+    dl $ver linux s390x
+    dl $ver netbsd 386
+    dl $ver netbsd amd64
     dl $ver openbsd 386
     dl $ver openbsd amd64
     dl $ver windows 386 zip
     dl $ver windows amd64 zip
 }
 
-dl_ver ${1:-0.15.1}
+dl_ver ${1:-0.15.2}

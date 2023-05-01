@@ -16,7 +16,7 @@
   become_user: root
   stat:
     path: '{{ restic_install_bin }}'
-  changed_when: False
+  changed_when: false
   register: restic_binary
 - when: not restic_binary.stat.exists
   block:
