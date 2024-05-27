@@ -1,6 +1,6 @@
 ---
 # defaults file for restic
-restic_ver: 0.15.2
+restic_ver: 0.16.4
 restic_mirror: https://github.com/restic/restic/releases/download
 restic_arch_map:
   386: 386
@@ -324,3 +324,50 @@ restic_checksums:
     windows_386: sha256:6f9d22dde53839cfc4a035c019f2e55fa6a7e7e1ac308060ec312b70e6272611
     # https://github.com/restic/restic/releases/download/v0.15.2/restic_0.15.2_windows_amd64.zip
     windows_amd64: sha256:37dbd859160bbb6d1b95e9f4a5c498c8df386db510950875c70328f688cb4e5d
+  '0.16.4':
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_aix_ppc64.bz2
+    aix_ppc64: sha256:47740183a3e2ffdb4acc17a97456de9406f158ec4c964d9d6627fd6711032a86
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_darwin_amd64.bz2
+    darwin_amd64: sha256:6b2fc43f794182788aaa8dae50f1f731c33c5126558e621d693c18455aae92cc
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_darwin_arm64.bz2
+    darwin_arm64: sha256:10b3f5491e54c82b421980e848542f8f589ad6635f83fb2d89d9996cb37ac9c7
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_freebsd_386.bz2
+    freebsd_386: sha256:2f2d847e45c63766134c300e0fffec4acc13141b7fa23e77485e14592a933b4b
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_freebsd_amd64.bz2
+    freebsd_amd64: sha256:a393bd2a8a781b63fd58b3b343222ff70c8f7669be23078f844a101144368800
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_freebsd_arm.bz2
+    freebsd_arm: sha256:1a56d77d702056356afad246655a1974c5df127163542753f0fcede98a250045
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_386.bz2
+    linux_386: sha256:d40270cb6d23e194a1ecb483a41ed42d9edf803b6c207b7599ff5813036f5e5e
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_amd64.bz2
+    linux_amd64: sha256:3d4d43c169a9e28ea76303b1e8b810f0dcede7478555fdaa8959971ad499e324
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_arm.bz2
+    linux_arm: sha256:c4677e4eaf38ceda97841c8cae883883e026751970b41bb1a3f5e0610e07a5b1
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_arm64.bz2
+    linux_arm64: sha256:9d2f44538ea0c6309426cb290d3a6b8b0b85de5de7f1496ff40c843b36bf8a8d
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_mips.bz2
+    linux_mips: sha256:a20cd9ca2f6e691c531cf7d30c46bfadce77e609c90a5fe4b37254f14e5a934f
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_mips64.bz2
+    linux_mips64: sha256:84b92d2a8ea328fac12eaa92321d3a5c61374f1dc9c7a9a6e150431b11354854
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_mips64le.bz2
+    linux_mips64le: sha256:4b2335364a62f3268581e6343b3b9243fa89ef6a48ca9b24ea2db1a949e91156
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_mipsle.bz2
+    linux_mipsle: sha256:349eb981d2d5b1f4b16127d6a0c07929ff6851d15f816a9d09ff71154743a9e1
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_ppc64le.bz2
+    linux_ppc64le: sha256:96fc55faff503465ff38e6bbbb21fc6365f11b52756d0b82db3a52b3f5487af7
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_riscv64.bz2
+    linux_riscv64: sha256:24125fd40e20be4c607e7ff58bdce302473460f5d31cba9172cdff2946878d1f
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_s390x.bz2
+    linux_s390x: sha256:b168ad78533011155648042d2900398596b0b128d12aeab2314424eb8be06794
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_netbsd_386.bz2
+    netbsd_386: sha256:1665a0292194daca49b91f61498f048d3099193c562c81f60eb311aabec54313
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_netbsd_amd64.bz2
+    netbsd_amd64: sha256:4241fd63136c5f19a197d232b8be95e88b06dd9d2052c950404dd6567d922ab7
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_openbsd_386.bz2
+    openbsd_386: sha256:4ef3458f9635baf5cfd25a793486b612df7f4904c91eb2e4558d9713fcd34912
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_openbsd_amd64.bz2
+    openbsd_amd64: sha256:bcc708853cb655ade9ab3dba63fb1a585508ca1f55fe0ec41d97f84c97a25495
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_windows_386.zip
+    windows_386: sha256:46d932ff5e5ca781fb01d313a56cf4087f27250fbdc0d7cb56fa958476bb8af8
+    # https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_windows_amd64.zip
+    windows_amd64: sha256:911a1b84f2100d2ac691c0bb28955fd2ab65e76cb2dbe651b21f6072a508e2be

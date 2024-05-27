@@ -1,8 +1,6 @@
 ---
-- include_role:
-    name: andrewrothstein.unarchive-deps
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolving platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -11,45 +9,51 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: check for install at {{ restic_install_bin }}
+- name: Check for install at {{ restic_install_bin }}
   become: true
   become_user: root
-  stat:
+  ansible.builtin.stat:
     path: '{{ restic_install_bin }}'
   changed_when: false
   register: restic_binary
-- when: not restic_binary.stat.exists
+- name: Downloading and installing restic
+  when: not restic_binary.stat.exists
   block:
-    - name: downloading {{ restic_url }} to {{ restic_tmp_bz2 }}
+    - name: Downloading {{ restic_url }} to {{ restic_tmp_bz2 }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ restic_url }}'
         dest: '{{ restic_tmp_bz2 }}'
+        mode: '644'
         checksum: '{{ restic_checksum }}'
-    - name: decompressing {{ restic_tmp_bz2 }} to {{ restic_install_bin }}
+    - name: Installing andrewrothstein.unarchivedeps
+      ansible.builtin.include_role:
+        name: andrewrothstein.unarchivedeps
+    - name: Decompressing {{ restic_tmp_bz2 }} to {{ restic_install_bin }}
       become: true
       become_user: root
-      shell: 'bunzip2 -c /tmp/{{ restic_bz2 }} > {{ restic_install_bin }}'
+      ansible.builtin.shell: |-
+        bunzip2 -c /tmp/{{ restic_bz2 }} > {{ restic_install_bin }}
       args:
         creates: '{{ restic_install_bin }}'
-    - name: chmod 0755 {{ restic_install_bin }}
+    - name: Chmod 755 {{ restic_install_bin }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ restic_install_bin }}'
-        mode: 0755
+        mode: '755'
   always:
-    - name: rm {{ restic_tmp_bz2 }}
+    - name: Rm {{ restic_tmp_bz2 }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ restic_tmp_bz2 }}'
         state: absent
-- name: linking {{ restic_install_link }} to {{ restic_install_bin }}
+- name: Linking {{ restic_install_link }} to {{ restic_install_bin }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ restic_install_bin }}'
     dest: '{{ restic_install_link }}'
     state: link
