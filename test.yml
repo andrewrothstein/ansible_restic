@@ -8,6 +8,6 @@
       ansible.builtin.command: restic version
       changed_when: false
       register: restic_test_output
-    - name: Output from 'restic versin'
+    - name: Output from 'restic version'
       ansible.builtin.debug:
         msg: '{{ restic_test_output.stdout }}'
